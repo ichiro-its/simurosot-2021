@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>sprint</name>
+  <version>0.0.0</version>
+  <description>Sprint Package for Simurosot Competition 2021</description>
+  <maintainer email="jalilpro31@gmail.com">Maroqi Jalil</maintainer>
+  <license>MIT License</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>aruku</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+</package>
