@@ -33,7 +33,7 @@
 
 int main(int argc, char * argv[])
 {
-  if (argc < 1) {
+  if (argc < 2) {
     std::cerr << "Please specify the config path!" << std::endl;
     return 0;
   }
@@ -43,7 +43,7 @@ int main(int argc, char * argv[])
   ros::Publisher joint_state_publisher = ros_node.advertise<sensor_msgs::JointState>("/joint_states", 1);
   ros::Rate ros_rate(8);
 
-  std::string path = "argv[1]";
+  std::string path = argv[2];
 
   auto walking = std::make_shared<aruku::Walking>();
   walking->initialize();
@@ -103,4 +103,6 @@ int main(int argc, char * argv[])
   }
 
   walking->stop();
+
+  return 0;
 }
