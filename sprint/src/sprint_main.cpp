@@ -43,7 +43,7 @@ int main(int argc, char * argv[])
   ros::Publisher joint_state_publisher = ros_node.advertise<sensor_msgs::JointState>("/joint_states", 1);
   ros::Rate ros_rate(8);
 
-  std::string path = argv[2];
+  std::string path = argv[1];
 
   auto walking = std::make_shared<aruku::Walking>();
   walking->initialize();

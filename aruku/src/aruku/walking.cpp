@@ -350,89 +350,89 @@ void Walking::update_param_move()
 
 void Walking::load_data(const std::string & path)
 {
-  // std::string file_name =
-  //   path + "walking/" + "aruku.json";
-  // std::ifstream file(file_name);
-  // nlohmann::json walking_data = nlohmann::json::parse(file);
+  std::string file_name =
+    path + "src/aruku/data/" + "aruku.json";
+  std::ifstream file(file_name);
+  nlohmann::json walking_data = nlohmann::json::parse(file);
 
-  // for (auto &[key, val] : walking_data.items()) {
-  //   if (key == "Ratio") {
-  //     try {
-  //       val.at("period_time").get_to(PERIOD_TIME);
-  //       val.at("dsp_ratio").get_to(DSP_RATIO);
-  //       val.at("foot_height").get_to(Z_MOVE_AMPLITUDE);
-  //       val.at("swing_right_left").get_to(Y_SWAP_AMPLITUDE);
-  //       val.at("swing_up_down").get_to(Z_SWAP_AMPLITUDE);
-  //       val.at("arm_swing_gain").get_to(ARM_SWING_GAIN);
-  //       val.at("backward_hip_comp_ratio").get_to(BACKWARD_HIP_COMP_RATIO);
-  //       val.at("forward_hip_comp_ratio").get_to(FORWARD_HIP_COMP_RATIO);
-  //       val.at("foot_comp_ratio").get_to(FOOT_COMP_RATIO);
-  //       val.at("dsp_comp_ratio").get_to(DSP_COMP_RATIO);
-  //       val.at("period_comp_ratio").get_to(PERIOD_COMP_RATIO);
-  //       val.at("move_accel_ratio").get_to(MOVE_ACCEL_RATIO);
-  //       val.at("foot_accel_ratio").get_to(FOOT_ACCEL_RATIO);
-  //     } catch (nlohmann::json::parse_error & ex) {
-  //       std::cerr << "parse error at byte " << ex.byte << std::endl;
-  //     }
-  //   } else if (key == "Balance") {
-  //     try {
-  //       val.at("balance_knee_gain").get_to(BALANCE_KNEE_GAIN);
-  //       val.at("balance_ankle_pitch_gain").get_to(BALANCE_ANKLE_PITCH_GAIN);
-  //       val.at("balance_hip_roll_gain").get_to(BALANCE_HIP_ROLL_GAIN);
-  //       val.at("balance_ankle_roll_gain").get_to(BALANCE_ANKLE_ROLL_GAIN);
-  //     } catch (nlohmann::json::parse_error & ex) {
-  //       std::cerr << "parse error at byte " << ex.byte << std::endl;
-  //     }
-  //   } else if (key == "PID") {
-  //     try {
-  //       val.at("p_gain").get_to(P_GAIN);
-  //       val.at("i_gain").get_to(I_GAIN);
-  //       val.at("d_gain").get_to(D_GAIN);
-  //     } catch (nlohmann::json::parse_error & ex) {
-  //       std::cerr << "parse error at byte " << ex.byte << std::endl;
-  //     }
-  //   } else if (key == "Odometry") {
-  //     try {
-  //       val.at("fx_coefficient").get_to(ODOMETRY_FX_COEFFICIENT);
-  //       val.at("ly_coefficient").get_to(ODOMETRY_LY_COEFFICIENT);
-  //       val.at("ry_coefficient").get_to(ODOMETRY_RY_COEFFICIENT);
-  //     } catch (nlohmann::json::parse_error & ex) {
-  //       std::cerr << "parse error at byte " << ex.byte << std::endl;
-  //     }
-  //   } else if (key == "Kinematic") {
-  //     try {
-  //       val.at("thigh_length").get_to(THIGH_LENGTH);
-  //       val.at("calf_length").get_to(CALF_LENGTH);
-  //       val.at("ankle_length").get_to(ANKLE_LENGTH);
-  //       val.at("leg_length").get_to(LEG_LENGTH);
-  //     } catch (nlohmann::json::parse_error & ex) {
-  //       std::cerr << "parse error at byte " << ex.byte << std::endl;
-  //     }
-  //   } else if (key == "InitAngles") {
-  //     try {
-  //       val.at("right_hip_yaw").get_to(INIT_R_HIP_YAW);
-  //       val.at("right_hip_pitch").get_to(INIT_R_HIP_PITCH);
-  //       val.at("right_hip_roll").get_to(INIT_R_HIP_ROLL);
-  //       val.at("right_knee").get_to(INIT_R_KNEE);
-  //       val.at("right_ankle_pitch").get_to(INIT_R_ANKLE_PITCH);
-  //       val.at("right_ankle_roll").get_to(INIT_R_ANKLE_ROLL);
-  //       val.at("left_hip_yaw").get_to(INIT_L_HIP_YAW);
-  //       val.at("left_hip_pitch").get_to(INIT_L_HIP_PITCH);
-  //       val.at("left_hip_roll").get_to(INIT_L_HIP_ROLL);
-  //       val.at("left_knee").get_to(INIT_L_KNEE);
-  //       val.at("left_ankle_pitch").get_to(INIT_L_ANKLE_PITCH);
-  //       val.at("left_ankle_roll").get_to(INIT_L_ANKLE_ROLL);
-  //       val.at("right_shoulder_pitch").get_to(INIT_R_SHOULDER_PITCH);
-  //       val.at("right_shoulder_roll").get_to(INIT_R_SHOULDER_ROLL);
-  //       val.at("right_elbow").get_to(INIT_R_ELBOW);
-  //       val.at("left_shoulder_pitch").get_to(INIT_L_SHOULDER_PITCH);
-  //       val.at("left_shoulder_roll").get_to(INIT_L_SHOULDER_ROLL);
-  //       val.at("left_elbow").get_to(INIT_L_ELBOW);
-  //     } catch (nlohmann::json::parse_error & ex) {
-  //       std::cerr << "parse error at byte " << ex.byte << std::endl;
-  //     }
-  //   }
-  // }
+  for (auto it = walking_data.begin(); it != walking_data.end(); ++it) {
+    if (it.key() == "Ratio") {
+      try {
+        PERIOD_TIME = it.value()["period_time"].get<double>();
+        DSP_RATIO = it.value()["dsp_ratio"].get<double>();
+        Z_MOVE_AMPLITUDE = it.value()["foot_height"].get<double>();
+        Y_SWAP_AMPLITUDE = it.value()["swing_right_left"].get<double>();
+        Z_SWAP_AMPLITUDE = it.value()["swing_up_down"].get<double>();
+        ARM_SWING_GAIN = it.value()["arm_swing_gain"].get<double>();
+        BACKWARD_HIP_COMP_RATIO = it.value()["backward_hip_comp_ratio"].get<double>();
+        FORWARD_HIP_COMP_RATIO = it.value()["forward_hip_comp_ratio"].get<double>();
+        FOOT_COMP_RATIO = it.value()["foot_comp_ratio"].get<double>();
+        DSP_COMP_RATIO = it.value()["dsp_comp_ratio"].get<double>();
+        PERIOD_COMP_RATIO = it.value()["period_comp_ratio"].get<double>();
+        MOVE_ACCEL_RATIO = it.value()["move_accel_ratio"].get<double>();
+        FOOT_ACCEL_RATIO = it.value()["foot_accel_ratio"].get<double>();
+      } catch (std::exception & ex) {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    } else if (it.key() == "Balance") {
+      try {
+        BALANCE_KNEE_GAIN = it.value()["balance_knee_gain"].get<double>();
+        BALANCE_ANKLE_PITCH_GAIN = it.value()["balance_ankle_pitch_gain"].get<double>();
+        BALANCE_HIP_ROLL_GAIN = it.value()["balance_hip_roll_gain"].get<double>();
+        BALANCE_ANKLE_ROLL_GAIN = it.value()["balance_ankle_roll_gain"].get<double>();
+      } catch (std::exception & ex) {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    } else if (it.key() == "PID") {
+      try {
+        P_GAIN = it.value()["p_gain"].get<int>();
+        I_GAIN = it.value()["i_gain"].get<int>();
+        D_GAIN = it.value()["d_gain"].get<int>();
+      } catch (std::exception & ex) {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    } else if (it.key() == "Odometry") {
+      try {
+        ODOMETRY_FX_COEFFICIENT = it.value()["fx_coefficient"].get<double>();
+        ODOMETRY_LY_COEFFICIENT = it.value()["ly_coefficient"].get<double>();
+        ODOMETRY_RY_COEFFICIENT = it.value()["ry_coefficient"].get<double>();
+      } catch (std::exception & ex) {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    } else if (it.key() == "Kinematic") {
+      try {
+        THIGH_LENGTH = it.value()["thigh_length"].get<double>();
+        CALF_LENGTH = it.value()["calf_length"].get<double>();
+        ANKLE_LENGTH = it.value()["ankle_length"].get<double>();
+        LEG_LENGTH = it.value()["leg_length"].get<double>();
+      } catch (std::exception & ex) {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    } else if (it.key() == "InitAngles") {
+      try {
+        INIT_R_HIP_YAW = it.value()["right_hip_yaw"].get<double>();
+        INIT_R_HIP_PITCH = it.value()["right_hip_pitch"].get<double>();
+        INIT_R_HIP_ROLL = it.value()["right_hip_roll"].get<double>();
+        INIT_R_KNEE = it.value()["right_knee"].get<double>();
+        INIT_R_ANKLE_PITCH = it.value()["right_ankle_pitch"].get<double>();
+        INIT_R_ANKLE_ROLL = it.value()["right_ankle_roll"].get<double>();
+        INIT_L_HIP_YAW = it.value()["left_hip_yaw"].get<double>();
+        INIT_L_HIP_PITCH = it.value()["left_hip_pitch"].get<double>();
+        INIT_L_HIP_ROLL = it.value()["left_hip_roll"].get<double>();
+        INIT_L_KNEE = it.value()["left_knee"].get<double>();
+        INIT_L_ANKLE_PITCH = it.value()["left_ankle_pitch"].get<double>();
+        INIT_L_ANKLE_ROLL = it.value()["left_ankle_roll"].get<double>();
+        INIT_R_SHOULDER_PITCH = it.value()["right_shoulder_pitch"].get<double>();
+        INIT_R_SHOULDER_ROLL = it.value()["right_shoulder_roll"].get<double>();
+        INIT_R_ELBOW = it.value()["right_elbow"].get<double>();
+        INIT_L_SHOULDER_PITCH = it.value()["left_shoulder_pitch"].get<double>();
+        INIT_L_SHOULDER_ROLL = it.value()["left_shoulder_roll"].get<double>();
+        INIT_L_ELBOW = it.value()["left_elbow"].get<double>();
+      } catch (std::exception & ex) {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    }
+  }
 }
 
 void Walking::initialize()

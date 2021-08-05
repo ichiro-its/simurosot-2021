@@ -7,5 +7,5 @@
   <license>MIT License</license>
   <buildtool_depend>catkin</buildtool_depend>
   <depend>keisan</depend>
-  <depend>nlohmann-json3-dev</depend>
+  <depend>nlohmann-json-dev</depend>
 </package>
