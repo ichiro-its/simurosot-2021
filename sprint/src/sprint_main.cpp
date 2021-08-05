@@ -89,8 +89,8 @@ int main(int argc, char * argv[])
     for (auto joint_name : joints_name) {
       if (joints_index.find(joint_name) != joints_index.end()) {
         joints_state.push_back(joints.at(joints_index.at(joint_name)));
-
-        std::cout << joint_name << ": " << joints.at(joints_index.at(joint_name)) << std::endl;
+      } else {
+        joints_state.push_back(0.0);
       }
     }
 
@@ -103,6 +103,5 @@ int main(int argc, char * argv[])
   }
 
   walking->stop();
-
   return 0;
 }

@@ -470,6 +470,11 @@ void Walking::initialize()
   joints[16] = INIT_L_SHOULDER_ROLL;
   joints[17] = INIT_L_ELBOW;
 
+  std::cout << "size: " << joints.size() << std::endl;
+  for (auto joint : joints) {
+    std::cout << joint << std::endl;
+  }
+
   update_param_time();
   update_param_move();
 
@@ -847,10 +852,12 @@ void Walking::process()
   }
 
   // Compute angles
+  std::cout << "compute ik 1" << std::endl;
   if (compute_ik(&angle[0], r_x, r_y, r_z, r_a, r_b, r_c) == false) {
     return;
   }
 
+  std::cout << "compute ik 2" << std::endl;
   if (compute_ik(&angle[6], l_x, l_y, l_z, l_a, l_b, l_c) == false) {
     return;
   }
@@ -941,6 +948,12 @@ void Walking::process()
 
   for (int id = 0; id < static_cast<int>(joints.size()); id++) {
     joints[id] = mx.value_to_angle(outValue[id]);
+    std::cout << id << ": " << outValue[id] << std::endl;
+  }
+
+  std::cout << "size: " << joints.size() << std::endl;
+  for (auto joint : joints) {
+    std::cout << joint << std::endl;
   }
 }
 
