@@ -46,8 +46,8 @@ int main(int argc, char * argv[])
   std::string path = argv[1];
 
   auto walking = std::make_shared<aruku::Walking>();
-  walking->initialize();
   walking->load_data(path);
+  walking->initialize();
   walking->start();
 
   std::map<std::string, int> joints_index = walking->get_joints_index();
@@ -98,7 +98,6 @@ int main(int argc, char * argv[])
     joint_state_publisher.publish(joints_state_msg);
 
     ros::spinOnce();
-
     ros_rate.sleep();
   }
 

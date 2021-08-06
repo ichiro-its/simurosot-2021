@@ -168,12 +168,30 @@ bool Walking::compute_ik(double * out, double x, double y, double z, double a, d
   vec.Y = y + Tad.m[6] * ANKLE_LENGTH;
   vec.Z = (z - LEG_LENGTH) + Tad.m[10] * ANKLE_LENGTH;
 
+  std::cout << "Tad.m[2]: " << Tad.m[2] << std::endl;
+  std::cout << "Tad.m[6]: " << Tad.m[6] << std::endl;
+  std::cout << "Tad.m[10]: " << Tad.m[10] << std::endl;
+  std::cout << "x: " << x << std::endl;
+  std::cout << "y: " << y << std::endl;
+  std::cout << "z: " << z << std::endl;
+  std::cout << "a: " << a << std::endl;
+  std::cout << "b: " << b << std::endl;
+  std::cout << "c: " << c << std::endl;
+  std::cout << "vec.X: " << vec.X << " " << keisan::rad2Deg() << std::endl;
+  std::cout << "vec.Y: " << vec.Y << std::endl;
+  std::cout << "vec.Z: " << vec.Z << std::endl;
+  std::cout << "vec.Length: " << (vec.X * vec.X + vec.Y * vec.Y + vec.Z * vec.Z) << std::endl;
+
   // Get Knee
   _Rac = vec.Length();
+  std::cout << "_Rac: " << _Rac << std::endl;
   _Acos =
     acos(
     (_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) /
     (2 * THIGH_LENGTH * CALF_LENGTH));
+  std::cout << "before: " << (_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) /
+    (2 * THIGH_LENGTH * CALF_LENGTH) << std::endl;
+  std::cout << "_Acos: " << _Acos << std::endl;
   if (std::isnan(_Acos) == 1) {
     return false;
   }
@@ -193,6 +211,7 @@ bool Walking::compute_ik(double * out, double x, double y, double z, double a, d
     _m = -1.0;
   }
   _Acos = acos(_m);
+  std::cout << "_Acos: " << _Acos << std::endl;
   if (std::isnan(_Acos) == 1) {
     return false;
   }
@@ -212,6 +231,7 @@ bool Walking::compute_ik(double * out, double x, double y, double z, double a, d
   }
   Tac = Tad * Tdc;
   _Atan = atan2(-Tac.m[1], Tac.m[5]);
+  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1) {
     return false;
   }
@@ -219,6 +239,7 @@ bool Walking::compute_ik(double * out, double x, double y, double z, double a, d
 
   // Get Hip Roll
   _Atan = atan2(Tac.m[9], -Tac.m[1] * sin(*(out)) + Tac.m[5] * cos(*(out)));
+  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1) {
     return false;
   }
@@ -228,6 +249,7 @@ bool Walking::compute_ik(double * out, double x, double y, double z, double a, d
   _Atan = atan2(
     Tac.m[2] * cos(*(out)) + Tac.m[6] * sin(*(out)), Tac.m[0] * cos(
       *(out)) + Tac.m[4] * sin(*(out)));
+  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1) {
     return false;
   }
@@ -240,6 +262,7 @@ bool Walking::compute_ik(double * out, double x, double y, double z, double a, d
   _s = (_k * _n + _l * _m) / (_k * _k + _l * _l);
   _c = (_n - _k * _s) / _l;
   _Atan = atan2(_s, _c);
+  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1) {
     return false;
   }
@@ -358,76 +381,76 @@ void Walking::load_data(const std::string & path)
   for (auto it = walking_data.begin(); it != walking_data.end(); ++it) {
     if (it.key() == "Ratio") {
       try {
-        PERIOD_TIME = it.value()["period_time"].get<double>();
-        DSP_RATIO = it.value()["dsp_ratio"].get<double>();
-        Z_MOVE_AMPLITUDE = it.value()["foot_height"].get<double>();
-        Y_SWAP_AMPLITUDE = it.value()["swing_right_left"].get<double>();
-        Z_SWAP_AMPLITUDE = it.value()["swing_up_down"].get<double>();
-        ARM_SWING_GAIN = it.value()["arm_swing_gain"].get<double>();
-        BACKWARD_HIP_COMP_RATIO = it.value()["backward_hip_comp_ratio"].get<double>();
-        FORWARD_HIP_COMP_RATIO = it.value()["forward_hip_comp_ratio"].get<double>();
-        FOOT_COMP_RATIO = it.value()["foot_comp_ratio"].get<double>();
-        DSP_COMP_RATIO = it.value()["dsp_comp_ratio"].get<double>();
-        PERIOD_COMP_RATIO = it.value()["period_comp_ratio"].get<double>();
-        MOVE_ACCEL_RATIO = it.value()["move_accel_ratio"].get<double>();
-        FOOT_ACCEL_RATIO = it.value()["foot_accel_ratio"].get<double>();
+        PERIOD_TIME = it.value()["period_time"].get<double>(); std::cout << PERIOD_TIME << std::endl;
+        DSP_RATIO = it.value()["dsp_ratio"].get<double>(); std::cout << DSP_RATIO << std::endl;
+        Z_MOVE_AMPLITUDE = it.value()["foot_height"].get<double>(); std::cout << Z_MOVE_AMPLITUDE << std::endl;
+        Y_SWAP_AMPLITUDE = it.value()["swing_right_left"].get<double>(); std::cout << Y_SWAP_AMPLITUDE << std::endl;
+        Z_SWAP_AMPLITUDE = it.value()["swing_up_down"].get<double>(); std::cout << Z_SWAP_AMPLITUDE << std::endl;
+        ARM_SWING_GAIN = it.value()["arm_swing_gain"].get<double>(); std::cout << ARM_SWING_GAIN << std::endl;
+        BACKWARD_HIP_COMP_RATIO = it.value()["backward_hip_comp_ratio"].get<double>(); std::cout << BACKWARD_HIP_COMP_RATIO << std::endl;
+        FORWARD_HIP_COMP_RATIO = it.value()["forward_hip_comp_ratio"].get<double>(); std::cout << FORWARD_HIP_COMP_RATIO << std::endl;
+        FOOT_COMP_RATIO = it.value()["foot_comp_ratio"].get<double>(); std::cout << FOOT_COMP_RATIO << std::endl;
+        DSP_COMP_RATIO = it.value()["dsp_comp_ratio"].get<double>(); std::cout << DSP_COMP_RATIO << std::endl;
+        PERIOD_COMP_RATIO = it.value()["period_comp_ratio"].get<double>(); std::cout << PERIOD_COMP_RATIO << std::endl;
+        MOVE_ACCEL_RATIO = it.value()["move_accel_ratio"].get<double>(); std::cout << MOVE_ACCEL_RATIO << std::endl;
+        FOOT_ACCEL_RATIO = it.value()["foot_accel_ratio"].get<double>(); std::cout << FOOT_ACCEL_RATIO << std::endl;
       } catch (std::exception & ex) {
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
     } else if (it.key() == "Balance") {
       try {
-        BALANCE_KNEE_GAIN = it.value()["balance_knee_gain"].get<double>();
-        BALANCE_ANKLE_PITCH_GAIN = it.value()["balance_ankle_pitch_gain"].get<double>();
-        BALANCE_HIP_ROLL_GAIN = it.value()["balance_hip_roll_gain"].get<double>();
-        BALANCE_ANKLE_ROLL_GAIN = it.value()["balance_ankle_roll_gain"].get<double>();
+        BALANCE_KNEE_GAIN = it.value()["balance_knee_gain"].get<double>(); std::cout << BALANCE_KNEE_GAIN << std::endl;
+        BALANCE_ANKLE_PITCH_GAIN = it.value()["balance_ankle_pitch_gain"].get<double>(); std::cout << BALANCE_ANKLE_PITCH_GAIN << std::endl;
+        BALANCE_HIP_ROLL_GAIN = it.value()["balance_hip_roll_gain"].get<double>(); std::cout << BALANCE_HIP_ROLL_GAIN << std::endl;
+        BALANCE_ANKLE_ROLL_GAIN = it.value()["balance_ankle_roll_gain"].get<double>(); std::cout << BALANCE_ANKLE_ROLL_GAIN << std::endl;
       } catch (std::exception & ex) {
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
     } else if (it.key() == "PID") {
       try {
-        P_GAIN = it.value()["p_gain"].get<int>();
-        I_GAIN = it.value()["i_gain"].get<int>();
-        D_GAIN = it.value()["d_gain"].get<int>();
+        P_GAIN = it.value()["p_gain"].get<int>(); std::cout << P_GAIN << std::endl;
+        I_GAIN = it.value()["i_gain"].get<int>(); std::cout << I_GAIN << std::endl;
+        D_GAIN = it.value()["d_gain"].get<int>(); std::cout << D_GAIN << std::endl;
       } catch (std::exception & ex) {
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
     } else if (it.key() == "Odometry") {
       try {
-        ODOMETRY_FX_COEFFICIENT = it.value()["fx_coefficient"].get<double>();
-        ODOMETRY_LY_COEFFICIENT = it.value()["ly_coefficient"].get<double>();
-        ODOMETRY_RY_COEFFICIENT = it.value()["ry_coefficient"].get<double>();
+        ODOMETRY_FX_COEFFICIENT = it.value()["fx_coefficient"].get<double>(); std::cout << ODOMETRY_FX_COEFFICIENT << std::endl;
+        ODOMETRY_LY_COEFFICIENT = it.value()["ly_coefficient"].get<double>(); std::cout << ODOMETRY_LY_COEFFICIENT << std::endl;
+        ODOMETRY_RY_COEFFICIENT = it.value()["ry_coefficient"].get<double>(); std::cout << ODOMETRY_RY_COEFFICIENT << std::endl;
       } catch (std::exception & ex) {
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
     } else if (it.key() == "Kinematic") {
       try {
-        THIGH_LENGTH = it.value()["thigh_length"].get<double>();
-        CALF_LENGTH = it.value()["calf_length"].get<double>();
-        ANKLE_LENGTH = it.value()["ankle_length"].get<double>();
-        LEG_LENGTH = it.value()["leg_length"].get<double>();
+        THIGH_LENGTH = it.value()["thigh_length"].get<double>(); std::cout << THIGH_LENGTH << std::endl;
+        CALF_LENGTH = it.value()["calf_length"].get<double>(); std::cout << CALF_LENGTH << std::endl;
+        ANKLE_LENGTH = it.value()["ankle_length"].get<double>(); std::cout << ANKLE_LENGTH << std::endl;
+        LEG_LENGTH = it.value()["leg_length"].get<double>(); std::cout << LEG_LENGTH << std::endl;
       } catch (std::exception & ex) {
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
     } else if (it.key() == "InitAngles") {
       try {
-        INIT_R_HIP_YAW = it.value()["right_hip_yaw"].get<double>();
-        INIT_R_HIP_PITCH = it.value()["right_hip_pitch"].get<double>();
-        INIT_R_HIP_ROLL = it.value()["right_hip_roll"].get<double>();
-        INIT_R_KNEE = it.value()["right_knee"].get<double>();
-        INIT_R_ANKLE_PITCH = it.value()["right_ankle_pitch"].get<double>();
-        INIT_R_ANKLE_ROLL = it.value()["right_ankle_roll"].get<double>();
-        INIT_L_HIP_YAW = it.value()["left_hip_yaw"].get<double>();
-        INIT_L_HIP_PITCH = it.value()["left_hip_pitch"].get<double>();
-        INIT_L_HIP_ROLL = it.value()["left_hip_roll"].get<double>();
-        INIT_L_KNEE = it.value()["left_knee"].get<double>();
-        INIT_L_ANKLE_PITCH = it.value()["left_ankle_pitch"].get<double>();
-        INIT_L_ANKLE_ROLL = it.value()["left_ankle_roll"].get<double>();
-        INIT_R_SHOULDER_PITCH = it.value()["right_shoulder_pitch"].get<double>();
-        INIT_R_SHOULDER_ROLL = it.value()["right_shoulder_roll"].get<double>();
-        INIT_R_ELBOW = it.value()["right_elbow"].get<double>();
-        INIT_L_SHOULDER_PITCH = it.value()["left_shoulder_pitch"].get<double>();
-        INIT_L_SHOULDER_ROLL = it.value()["left_shoulder_roll"].get<double>();
-        INIT_L_ELBOW = it.value()["left_elbow"].get<double>();
+        INIT_R_HIP_YAW = it.value()["right_hip_yaw"].get<double>(); std::cout << INIT_R_HIP_YAW << std::endl;
+        INIT_R_HIP_PITCH = it.value()["right_hip_pitch"].get<double>(); std::cout << INIT_R_HIP_PITCH << std::endl;
+        INIT_R_HIP_ROLL = it.value()["right_hip_roll"].get<double>(); std::cout << INIT_R_HIP_ROLL << std::endl;
+        INIT_R_KNEE = it.value()["right_knee"].get<double>(); std::cout << INIT_R_KNEE << std::endl;
+        INIT_R_ANKLE_PITCH = it.value()["right_ankle_pitch"].get<double>(); std::cout << INIT_R_ANKLE_PITCH << std::endl;
+        INIT_R_ANKLE_ROLL = it.value()["right_ankle_roll"].get<double>(); std::cout << INIT_R_ANKLE_ROLL << std::endl;
+        INIT_L_HIP_YAW = it.value()["left_hip_yaw"].get<double>(); std::cout << INIT_L_HIP_YAW << std::endl;
+        INIT_L_HIP_PITCH = it.value()["left_hip_pitch"].get<double>(); std::cout << INIT_L_HIP_PITCH << std::endl;
+        INIT_L_HIP_ROLL = it.value()["left_hip_roll"].get<double>(); std::cout << INIT_L_HIP_ROLL << std::endl;
+        INIT_L_KNEE = it.value()["left_knee"].get<double>(); std::cout << INIT_L_KNEE << std::endl;
+        INIT_L_ANKLE_PITCH = it.value()["left_ankle_pitch"].get<double>(); std::cout << INIT_L_ANKLE_PITCH << std::endl;
+        INIT_L_ANKLE_ROLL = it.value()["left_ankle_roll"].get<double>(); std::cout << INIT_L_ANKLE_ROLL << std::endl;
+        INIT_R_SHOULDER_PITCH = it.value()["right_shoulder_pitch"].get<double>(); std::cout << INIT_R_SHOULDER_PITCH << std::endl;
+        INIT_R_SHOULDER_ROLL = it.value()["right_shoulder_roll"].get<double>(); std::cout << INIT_R_SHOULDER_ROLL << std::endl;
+        INIT_R_ELBOW = it.value()["right_elbow"].get<double>(); std::cout << INIT_R_ELBOW << std::endl;
+        INIT_L_SHOULDER_PITCH = it.value()["left_shoulder_pitch"].get<double>(); std::cout << INIT_L_SHOULDER_PITCH << std::endl;
+        INIT_L_SHOULDER_ROLL = it.value()["left_shoulder_roll"].get<double>(); std::cout << INIT_L_SHOULDER_ROLL << std::endl;
+        INIT_L_ELBOW = it.value()["left_elbow"].get<double>(); std::cout << INIT_L_ELBOW << std::endl;
       } catch (std::exception & ex) {
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
