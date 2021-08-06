@@ -40,12 +40,12 @@
     "ly_coefficient": 5.0
   },
   "Kinematic": {
-    "thigh_length": 199.0,
-    "calf_length": 195.0,
-    "ankle_length": 59.7,
-    "leg_length": 394
+    "thigh_length": 101.9,
+    "calf_length": 98.231,
+    "ankle_length": 78.3,
+    "leg_length": 278.431
   },
-  "InitAngles": {    
+  "InitAngles": {
     "left_shoulder_pitch": 15,
     "left_shoulder_roll": -10,
     "left_elbow": 50,

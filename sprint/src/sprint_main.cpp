@@ -85,6 +85,7 @@ int main(int argc, char * argv[])
     walking->process();
     std::vector<float> joints = walking->get_joints();
 
+    std::cout << "in sprint_main" << std::endl;
     std::vector<double> joints_state;
     for (auto joint_name : joints_name) {
       if (joints_index.find(joint_name) != joints_index.end()) {
