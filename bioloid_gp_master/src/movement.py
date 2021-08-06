@@ -37,16 +37,116 @@ class movement:
         self.joints_states.header = Header()
         self.joints_states.header.stamp = rospy.Time.now()
         self.joints_states.name = ["joint_0_1","joint_0_2","joint_0_3","joint_0_4","joint_0_5","joint_0_6","joint_0_7","joint_0_8","joint_0_9","joint_0_10","joint_0_11","joint_0_12","joint_0_13","joint_0_14","joint_0_15","joint_0_16","joint_0_17","joint_0_18","joint_0_19","joint_0_20","joint_0_21"]
-        # right 1:shoulder, 3:upper, 5:below (positive)
-        # left 2:shoulder, 4:upper, 6:below (negative)
-        # right 9, 11, 13, 15, 17
-        # left 10, 12, 14, 16, 18
+
         number = 0
         while not rospy.is_shutdown():
             
-            # number = input ("Enter number: ")
-            # if (number == 0): #walkready
-                self.joint_position_state = [
+            number = input ("Enter number: ")
+            if (number == 0): #walkready
+                self.joint_position_state=[
+                    0*dtr, 0*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    0*dtr, 0*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -120*dtr, -120*dtr, #11 12 hip pitch
+                    -120*dtr, -120*dtr, #13 14 knee
+                    -30*dtr, -30*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time)
+                print("1")
+            
+            if (number == 1): #walkready
+                self.joint_position_state=[
+                    0*dtr, 0*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    0*dtr, 0*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -20*dtr, -20*dtr, #11 12 hip pitch
+                    0*dtr, 0*dtr, #13 14 knee
+                    0*dtr, 0*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21 
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time)
+                print("1")
+
+            if (number == 2): #walkready
+                self.joint_position_state=[
+                    -45*dtr, 45*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    -55*dtr, -55*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -140*dtr, -140*dtr, #11 12 hip pitch
+                    -10*dtr, -10*dtr, #13 14 knee
+                    15*dtr, 15*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21 
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time)
+                print("1")
+
+            if (number == 6): #SPRINT
+                self.joint_position_state=[
+                    0*dtr, 0*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    0*dtr, 0*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -120*dtr, -120*dtr, #11 12 hip pitch
+                    -120*dtr, -120*dtr, #13 14 knee
+                    -30*dtr, -30*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21 ankle roll
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time)
+                print("1")
+            
+            # if (number == 1): #walkready
+                self.joint_position_state=[
+                    0*dtr, 0*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    -120*dtr, -120*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -140*dtr, -140*dtr, #11 12 hip pitch
+                    -15*dtr, -15*dtr, #13 14 knee
+                    10*dtr, 10*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21 ankle roll
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time)
+                print("1")
+            
+            # if (number == 2): #walkready
+            #     self.joint_position_state=[
+            #         0*dtr, 0*dtr, #1 2 shoulder pitch
+            #         0*dtr, 0*dtr, #3 4 shoulder roll
+            #         0*dtr, 0*dtr, #5 6 below
+            #         0*dtr, 0*dtr, #7 8 not yet
+            #         0*dtr, 0*dtr, #9 10 hip roll (in positive)
+            #         -100*dtr, -100*dtr, #11 12 hip pitch
+            #         -150*dtr, -150*dtr, #13 14 knee
+            #         -70*dtr, -70*dtr, #15 16 ankle pitch (front negative)
+            #         0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+            #         0*dtr, 0*dtr, 0*dtr] #19 20 21 ankle roll
+            #     self.joints_states.position = self.joint_position_state
+            #     self.pub.publish(self.joints_states)
+            #     rospy.sleep(time)
+            #     print("1")
+                
+                
+            if (number == 10): #walkready
+                self.joint_position_state=[
                     0*dtr, 0*dtr, #1 2 shoulder pitch
                     0*dtr, 0*dtr, #3 4 shoulder roll
                     0*dtr, 0*dtr, #5 6 below
