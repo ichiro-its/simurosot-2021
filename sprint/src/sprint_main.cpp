@@ -41,7 +41,7 @@ int main(int argc, char * argv[])
   ros::init(argc, argv, "joint_state_node");
   ros::NodeHandle ros_node;
   ros::Publisher joint_state_publisher = ros_node.advertise<sensor_msgs::JointState>("/joint_states", 1);
-  ros::Rate ros_rate(8);
+  ros::Rate ros_rate(125);
 
   std::string path = argv[1];
 
