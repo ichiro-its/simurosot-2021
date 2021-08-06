@@ -195,8 +195,7 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
   _Rac = vec.Length();
   std::cout << "_Rac: " << _Rac << std::endl;
   _Acos =
-      acos(
-          (_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) /
+      acos((_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) /
           (2 * THIGH_LENGTH * CALF_LENGTH));
   std::cout << "before: " << (_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) / (2 * THIGH_LENGTH * CALF_LENGTH) << std::endl;
   std::cout << "_Acos: " << _Acos << std::endl;
@@ -272,9 +271,8 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
 
   // Get Hip Pitch and Ankle Pitch
   _Atan = atan2(
-      Tac.m[2] * cos(*(out)) + Tac.m[6] * sin(*(out)), Tac.m[0] * cos(
-                                                                      *(out)) +
-                                                            Tac.m[4] * sin(*(out)));
+      Tac.m[2] * cos(*(out)) + Tac.m[6] * sin(*(out)),
+			Tac.m[0] * cos(*(out)) + Tac.m[4] * sin(*(out)));
   std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1)
   {
@@ -1032,16 +1030,16 @@ void Walking::process()
 
   int dir[22];
   dir[0] = 1;
-  dir[1] = -1;
-  dir[2] = -1;
+  dir[1] = 1;
+  dir[2] = 1;
   dir[3] = -1;
-  dir[4] = -1;
+  dir[4] = 1;
   dir[5] = 1;
   dir[6] = 1;
-  dir[7] = -1;
-  dir[8] = -1;
+  dir[7] = 1;
+  dir[8] = 1;
   dir[9] = -1;
-  dir[10] = -1;
+  dir[10] = 1;
   dir[11] = 1;
   dir[12] = -1;
   dir[13] = 1;
