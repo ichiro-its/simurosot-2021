@@ -46,7 +46,7 @@ class movement:
                 self.joint_position_state=[
                     -45*dtr, 45*dtr, #1 2 shoulder pitch
                     0*dtr, 0*dtr, #3 4 shoulder roll
-                    -55*dtr, -55*dtr, #5 6 below
+                    -75*dtr, -75*dtr, #5 6 below
                     0*dtr, 0*dtr, #7 8 not yet
                     0*dtr, 0*dtr, #9 10 hip roll (in positive)
                     -140*dtr, -140*dtr, #11 12 hip pitch
