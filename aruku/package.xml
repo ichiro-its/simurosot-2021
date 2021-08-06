@@ -8,4 +8,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>keisan</depend>
   <depend>nlohmann-json-dev</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
 </package>

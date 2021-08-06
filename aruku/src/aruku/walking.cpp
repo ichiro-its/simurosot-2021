@@ -177,28 +177,11 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
   vec.Y = y + Tad.m[6] * ANKLE_LENGTH;
   vec.Z = (z - LEG_LENGTH) + Tad.m[10] * ANKLE_LENGTH;
 
-  std::cout << "Tad.m[2]: " << Tad.m[2] << std::endl;
-  std::cout << "Tad.m[6]: " << Tad.m[6] << std::endl;
-  std::cout << "Tad.m[10]: " << Tad.m[10] << std::endl;
-  std::cout << "x: " << x << std::endl;
-  std::cout << "y: " << y << std::endl;
-  std::cout << "z: " << z << std::endl;
-  std::cout << "a: " << a << std::endl;
-  std::cout << "b: " << b << std::endl;
-  std::cout << "c: " << c << std::endl;
-  std::cout << "vec.X: " << vec.X << " " << keisan::rad2Deg() << std::endl;
-  std::cout << "vec.Y: " << vec.Y << std::endl;
-  std::cout << "vec.Z: " << vec.Z << std::endl;
-  std::cout << "vec.Length: " << (vec.X * vec.X + vec.Y * vec.Y + vec.Z * vec.Z) << std::endl;
-
   // Get Knee
   _Rac = vec.Length();
-  std::cout << "_Rac: " << _Rac << std::endl;
   _Acos =
       acos((_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) /
           (2 * THIGH_LENGTH * CALF_LENGTH));
-  std::cout << "before: " << (_Rac * _Rac - THIGH_LENGTH * THIGH_LENGTH - CALF_LENGTH * CALF_LENGTH) / (2 * THIGH_LENGTH * CALF_LENGTH) << std::endl;
-  std::cout << "_Acos: " << _Acos << std::endl;
   if (std::isnan(_Acos) == 1)
   {
     return false;
@@ -225,7 +208,6 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
   }
 
   _Acos = acos(_m);
-  std::cout << "_Acos: " << _Acos << std::endl;
   if (std::isnan(_Acos) == 1)
   {
     return false;
@@ -253,7 +235,6 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
 
   Tac = Tad * Tdc;
   _Atan = atan2(-Tac.m[1], Tac.m[5]);
-  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1)
   {
     return false;
@@ -262,7 +243,6 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
 
   // Get Hip Roll
   _Atan = atan2(Tac.m[9], -Tac.m[1] * sin(*(out)) + Tac.m[5] * cos(*(out)));
-  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1)
   {
     return false;
@@ -273,7 +253,6 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
   _Atan = atan2(
       Tac.m[2] * cos(*(out)) + Tac.m[6] * sin(*(out)),
 			Tac.m[0] * cos(*(out)) + Tac.m[4] * sin(*(out)));
-  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1)
   {
     return false;
@@ -288,7 +267,6 @@ bool Walking::compute_ik(double *out, double x, double y, double z, double a, do
   _c = (_n - _k * _s) / _l;
 
   _Atan = atan2(_s, _c);
-  std::cout << "_Atan: " << _Atan << std::endl;
   if (std::isinf(_Atan) == 1)
   {
     return false;
@@ -987,13 +965,11 @@ void Walking::process()
   }
 
   // Compute angles
-  std::cout << "compute ik right" << std::endl;
   if (compute_ik(&angle[0], r_x, r_y, r_z, r_a, r_b, r_c) == false)
   {
     return;
   }
 
-  std::cout << "compute ik left" << std::endl;
   if (compute_ik(&angle[6], l_x, l_y, l_z, l_a, l_b, l_c) == false)
   {
     return;
