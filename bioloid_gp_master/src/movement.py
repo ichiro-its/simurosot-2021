@@ -157,7 +157,9 @@ class movement:
                     -30*dtr, -30*dtr, #15 16 ankle pitch (front negative)
                     0*dtr, 0*dtr, #17 18  ankle roll (out negative)
                     0*dtr, 0*dtr, 0*dtr] #19 20 21 ankle roll
+                self.joint_velocity_state = [0.00001] * 21
                 self.joints_states.position = self.joint_position_state
+                self.joints_states.velocity = self.joint_velocity_state
                 self.pub.publish(self.joints_states)
                 rospy.sleep(time)
                 print("1")
