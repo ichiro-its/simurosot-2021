@@ -1,7 +1,7 @@
 {
-  "Start": false,
-  "X": 100.0,
+  "Start": true,
+  "X": 20.0,
   "Y": 0.0,
-  "A": 5.0,
+  "A": 0.0,
   "Aim": false
 }

@@ -437,6 +437,23 @@ void Walking::load_data(const std::string &path)
         std::cerr << "parse error: " << ex.what() << std::endl;
       }
     }
+    else if (it.key() == "Offset")
+    {
+      try
+      {
+        X_OFFSET = it.value()["x_offset"].get<double>();
+        Y_OFFSET = it.value()["y_offset"].get<double>();
+        Z_OFFSET = it.value()["z_offset"].get<double>();
+        R_OFFSET = it.value()["roll_offset"].get<double>();
+        P_OFFSET = it.value()["pitch_offset"].get<double>();
+        A_OFFSET = it.value()["yaw_offset"].get<double>();
+        HIP_PITCH_OFFSET = it.value()["hip_pitch_offset"].get<double>();
+      }
+      catch (std::exception &ex)
+      {
+        std::cerr << "parse error: " << ex.what() << std::endl;
+      }
+    }
     else if (it.key() == "PID")
     {
       try
