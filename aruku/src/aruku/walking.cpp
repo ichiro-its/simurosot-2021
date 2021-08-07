@@ -498,24 +498,24 @@ void Walking::load_data(const std::string &path)
     {
       try
       {
-        INIT_R_HIP_YAW = it.value()["right_hip_yaw"].get<double>() * keisan::deg2Rad();
-        INIT_R_HIP_PITCH = it.value()["right_hip_pitch"].get<double>() * keisan::deg2Rad();
-        INIT_R_HIP_ROLL = it.value()["right_hip_roll"].get<double>() * keisan::deg2Rad();
-        INIT_R_KNEE = it.value()["right_knee"].get<double>() * keisan::deg2Rad();
-        INIT_R_ANKLE_PITCH = it.value()["right_ankle_pitch"].get<double>() * keisan::deg2Rad();
-        INIT_R_ANKLE_ROLL = it.value()["right_ankle_roll"].get<double>() * keisan::deg2Rad();
-        INIT_L_HIP_YAW = it.value()["left_hip_yaw"].get<double>() * keisan::deg2Rad();
-        INIT_L_HIP_PITCH = it.value()["left_hip_pitch"].get<double>() * keisan::deg2Rad();
-        INIT_L_HIP_ROLL = it.value()["left_hip_roll"].get<double>() * keisan::deg2Rad();
-        INIT_L_KNEE = it.value()["left_knee"].get<double>() * keisan::deg2Rad();
-        INIT_L_ANKLE_PITCH = it.value()["left_ankle_pitch"].get<double>() * keisan::deg2Rad();
-        INIT_L_ANKLE_ROLL = it.value()["left_ankle_roll"].get<double>() * keisan::deg2Rad();
-        INIT_R_SHOULDER_PITCH = it.value()["right_shoulder_pitch"].get<double>() * keisan::deg2Rad();
-        INIT_R_SHOULDER_ROLL = it.value()["right_shoulder_roll"].get<double>() * keisan::deg2Rad();
-        INIT_R_ELBOW = it.value()["right_elbow"].get<double>() * keisan::deg2Rad();
-        INIT_L_SHOULDER_PITCH = it.value()["left_shoulder_pitch"].get<double>() * keisan::deg2Rad();
-        INIT_L_SHOULDER_ROLL = it.value()["left_shoulder_roll"].get<double>() * keisan::deg2Rad();
-        INIT_L_ELBOW = it.value()["left_elbow"].get<double>() * keisan::deg2Rad();
+        INIT_R_HIP_YAW = it.value()["right_hip_yaw"].get<double>();
+        INIT_R_HIP_PITCH = it.value()["right_hip_pitch"].get<double>();
+        INIT_R_HIP_ROLL = it.value()["right_hip_roll"].get<double>();
+        INIT_R_KNEE = it.value()["right_knee"].get<double>();
+        INIT_R_ANKLE_PITCH = it.value()["right_ankle_pitch"].get<double>();
+        INIT_R_ANKLE_ROLL = it.value()["right_ankle_roll"].get<double>();
+        INIT_L_HIP_YAW = it.value()["left_hip_yaw"].get<double>();
+        INIT_L_HIP_PITCH = it.value()["left_hip_pitch"].get<double>();
+        INIT_L_HIP_ROLL = it.value()["left_hip_roll"].get<double>();
+        INIT_L_KNEE = it.value()["left_knee"].get<double>();
+        INIT_L_ANKLE_PITCH = it.value()["left_ankle_pitch"].get<double>();
+        INIT_L_ANKLE_ROLL = it.value()["left_ankle_roll"].get<double>();
+        INIT_R_SHOULDER_PITCH = it.value()["right_shoulder_pitch"].get<double>();
+        INIT_R_SHOULDER_ROLL = it.value()["right_shoulder_roll"].get<double>();
+        INIT_R_ELBOW = it.value()["right_elbow"].get<double>();
+        INIT_L_SHOULDER_PITCH = it.value()["left_shoulder_pitch"].get<double>();
+        INIT_L_SHOULDER_ROLL = it.value()["left_shoulder_roll"].get<double>();
+        INIT_L_ELBOW = it.value()["left_elbow"].get<double>();
       }
       catch (std::exception &ex)
       {
@@ -541,24 +541,24 @@ void Walking::initialize()
   m_Real_Running = false;
   m_Time = 0;
 
-  joints[0] = INIT_R_HIP_YAW;
-  joints[2] = INIT_R_HIP_PITCH;
-  joints[1] = INIT_R_HIP_ROLL;
-  joints[3] = INIT_R_KNEE;
-  joints[4] = INIT_R_ANKLE_PITCH;
-  joints[5] = INIT_R_ANKLE_ROLL;
-  joints[6] = INIT_L_HIP_YAW;
-  joints[8] = INIT_L_HIP_PITCH;
-  joints[7] = INIT_L_HIP_ROLL;
-  joints[9] = INIT_L_KNEE;
-  joints[10] = INIT_L_ANKLE_PITCH;
-  joints[11] = INIT_L_ANKLE_ROLL;
-  joints[12] = INIT_R_SHOULDER_PITCH;
-  joints[13] = INIT_R_SHOULDER_ROLL;
-  joints[14] = INIT_R_ELBOW;
-  joints[15] = INIT_L_SHOULDER_PITCH;
-  joints[16] = INIT_L_SHOULDER_ROLL;
-  joints[17] = INIT_L_ELBOW;
+  joints[0] = INIT_R_HIP_YAW * keisan::deg2Rad();
+  joints[2] = INIT_R_HIP_PITCH * keisan::deg2Rad();
+  joints[1] = INIT_R_HIP_ROLL * keisan::deg2Rad();
+  joints[3] = INIT_R_KNEE * keisan::deg2Rad();
+  joints[4] = INIT_R_ANKLE_PITCH * keisan::deg2Rad();
+  joints[5] = INIT_R_ANKLE_ROLL * keisan::deg2Rad();
+  joints[6] = INIT_L_HIP_YAW * keisan::deg2Rad();
+  joints[8] = INIT_L_HIP_PITCH * keisan::deg2Rad();
+  joints[7] = INIT_L_HIP_ROLL * keisan::deg2Rad();
+  joints[9] = INIT_L_KNEE * keisan::deg2Rad();
+  joints[10] = INIT_L_ANKLE_PITCH * keisan::deg2Rad();
+  joints[11] = INIT_L_ANKLE_ROLL * keisan::deg2Rad();
+  joints[12] = INIT_R_SHOULDER_PITCH * keisan::deg2Rad();
+  joints[13] = INIT_R_SHOULDER_ROLL * keisan::deg2Rad();
+  joints[14] = INIT_R_ELBOW * keisan::deg2Rad();
+  joints[15] = INIT_L_SHOULDER_PITCH * keisan::deg2Rad();
+  joints[16] = INIT_L_SHOULDER_ROLL * keisan::deg2Rad();
+  joints[17] = INIT_L_ELBOW * keisan::deg2Rad();
 
   update_param_time();
   update_param_move();
@@ -1023,13 +1023,13 @@ void Walking::process()
 
   int dir[22];
   dir[0] = 1;
-  dir[1] = 1;
+  dir[1] = -1;
   dir[2] = 1;
   dir[3] = -1;
   dir[4] = 1;
   dir[5] = 1;
   dir[6] = 1;
-  dir[7] = 1;
+  dir[7] = -1;
   dir[8] = 1;
   dir[9] = -1;
   dir[10] = 1;
@@ -1084,7 +1084,7 @@ void Walking::process()
   for (int id = 0; id < static_cast<int>(joints.size()); id++)
   {
     joints[id] = mx.value_to_angle(outValue[id]) * keisan::deg2Rad();
-    std::cout << id << ": " << outValue[id] << " " << mx.value_to_angle(outValue[id]) << " " << joints[id] << std::endl;
+    std::cout << id << ": i " << initAngle[id] << ", od " << mx.value_to_angle(outValue[id]) << ", or " << joints[id] << std::endl;
   }
 }
 

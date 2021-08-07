@@ -1,6 +1,6 @@
 {
-  "Start": true,
-  "X": 20.0,
+  "Start": false,
+  "X": 0.0,
   "Y": 0.0,
   "A": 0.0,
   "Aim": false
