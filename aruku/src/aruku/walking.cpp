@@ -869,7 +869,6 @@ void Walking::process()
   dir[20] = 1;
   dir[21] = 1;
 
-  std::cout << "build outValue" << std::endl;
   int outValue[22];
   for (int i = 0; i < 22; i++)
   {
@@ -884,7 +883,6 @@ void Walking::process()
     }
 
     outValue[i] = mx.angle_to_value(initAngle[i]) + static_cast<int>(offset);
-    std::cout << i << ": d " << dir[i] << ", a " << angle[i] << ", o " << offset << std::endl;
   }
 
   // adjust balance offset
@@ -906,11 +904,9 @@ void Walking::process()
     outValue[11] -= static_cast<int>(dir[11] * rlGyroErr * BALANCE_ANKLE_ROLL_GAIN * 4);
   }
 
-  std::cout << "in walking" << std::endl;
   for (int id = 0; id < static_cast<int>(joints.size()); id++)
   {
     joints[id] = mx.value_to_angle(outValue[id]) * keisan::deg2Rad();
-    std::cout << id << ": i " << initAngle[id] << ", od " << mx.value_to_angle(outValue[id]) << ", or " << joints[id] << std::endl;
   }
 }
 

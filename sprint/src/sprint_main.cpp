@@ -20,11 +20,15 @@
 
 #include <aruku/walking.hpp>
 
+#include <nlohmann/json.hpp>
+
 #include <fstream>
 #include <iostream>
 #include <memory>
 #include <map>
 #include <string>
+#include <thread>
+#include <utility>
 #include <vector>
 
 #include "ros/ros.h"
@@ -81,16 +85,46 @@ int main(int argc, char * argv[])
   joints_state_msg.header.stamp = ros::Time::now();
   joints_state_msg.name = joints_name;
 
+  int cmd;
+  std::thread input_handler([&cmd] {
+      while (true) {
+        std::cout << "> command : ";
+        std::cin >> cmd;
+      }
+    });
+
+  double forward_speed = 0.0;
+  double backward_speed = 0.0;
+  std::string file_name =
+    path + "src/sprint/data/main.json";
+  std::ifstream file(file_name);
+  nlohmann::json main_data = nlohmann::json::parse(file);
+
   while (ros::ok()) {
+    for (auto it = main_data.begin(); it != main_data.end(); ++it) {
+      if (it.key() == "forward_speed") {
+        forward_speed = it.value();
+      } else if (it.key() == "backward_speed") {
+        backward_speed = it.value();
+      }
+    }
+
+    if (cmd == 0) {
+      walking->X_MOVE_AMPLITUDE = 0.0;
+      walking->Y_MOVE_AMPLITUDE = 0.0;
+    } else if (cmd == 1) {
+      walking->X_MOVE_AMPLITUDE = forward_speed;
+    } else if (cmd == 2) {
+      walking->X_MOVE_AMPLITUDE = backward_speed;
+    }
+
     walking->process();
     std::vector<float> joints = walking->get_joints();
 
-    std::cout << "in sprint_main" << std::endl;
     std::vector<double> joints_state;
     for (auto joint_name : joints_name) {
       if (joints_index.find(joint_name) != joints_index.end()) {
         joints_state.push_back(joints.at(joints_index.at(joint_name)));
-        std::cout << joint_name << ": " << joints.at(joints_index.at(joint_name)) << std::endl;
       } else {
         joints_state.push_back(0.0);
       }

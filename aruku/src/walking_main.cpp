@@ -84,7 +84,7 @@ int main(int argc, char * argv[])
 
   while (ros::ok()) {
     std::string file_name =
-      path + "src/aruku/data/" + "main.json";
+      path + "src/aruku/data/main.json";
     std::ifstream file(file_name);
     nlohmann::json main_data = nlohmann::json::parse(file);
 
