@@ -702,237 +702,61 @@ void Walking::process()
   b_move_l = 0;
   a_move_r = 0;
   b_move_r = 0;
-
+  
   if (m_Time <= m_SSP_Time_Start_L)
   {
-    x_move_l = wsin(
-        m_SSP_Time_Start_L, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_X_Move_Amplitude,
-        m_X_Move_Amplitude_Shift);
-    y_move_l = wsin(
-        m_SSP_Time_Start_L, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Y_Move_Amplitude,
-        m_Y_Move_Amplitude_Shift);
-    z_move_l = wsin(
-        m_SSP_Time_Start_L, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_l = wsin(
-        m_SSP_Time_Start_L, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_A_Move_Amplitude,
-        m_A_Move_Amplitude_Shift);
-    x_move_r = wsin(
-        m_SSP_Time_Start_L, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_X_Move_Amplitude,
-        -m_X_Move_Amplitude_Shift);
-    y_move_r = wsin(
-        m_SSP_Time_Start_L, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_Y_Move_Amplitude,
-        -m_Y_Move_Amplitude_Shift);
-    z_move_r = wsin(
-        m_SSP_Time_Start_R, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_R,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_r = wsin(
-        m_SSP_Time_Start_L, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_A_Move_Amplitude,
-        -m_A_Move_Amplitude_Shift);
+    x_move_l = wsin(m_SSP_Time_Start_L, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_L, m_X_Move_Amplitude, m_X_Move_Amplitude_Shift);
+    y_move_l = wsin(m_SSP_Time_Start_L, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_L, m_Y_Move_Amplitude, m_Y_Move_Amplitude_Shift);
+    z_move_l = wsin(m_SSP_Time_Start_L, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_L, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_l = wsin(m_SSP_Time_Start_L, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_L, m_A_Move_Amplitude, m_A_Move_Amplitude_Shift);
+    x_move_r = wsin(m_SSP_Time_Start_L, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_L, -m_X_Move_Amplitude, -m_X_Move_Amplitude_Shift);
+    y_move_r = wsin(m_SSP_Time_Start_L, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_L, -m_Y_Move_Amplitude, -m_Y_Move_Amplitude_Shift);
+    z_move_r = wsin(m_SSP_Time_Start_R, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_R, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_r = wsin(m_SSP_Time_Start_L, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_L, -m_A_Move_Amplitude, -m_A_Move_Amplitude_Shift);
   }
   else if (m_Time <= m_SSP_Time_End_L)
   {
-    x_move_l = wsin(
-        m_Time, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_X_Move_Amplitude,
-        m_X_Move_Amplitude_Shift);
-    y_move_l = wsin(
-        m_Time, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Y_Move_Amplitude,
-        m_Y_Move_Amplitude_Shift);
-    z_move_l = wsin(
-        m_Time, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_l = wsin(
-        m_Time, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_A_Move_Amplitude,
-        m_A_Move_Amplitude_Shift);
-    x_move_r = wsin(
-        m_Time, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_X_Move_Amplitude,
-        -m_X_Move_Amplitude_Shift);
-    y_move_r = wsin(
-        m_Time, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_Y_Move_Amplitude,
-        -m_Y_Move_Amplitude_Shift);
-    z_move_r = wsin(
-        m_SSP_Time_Start_R, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_R,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_r = wsin(
-        m_Time, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_A_Move_Amplitude,
-        -m_A_Move_Amplitude_Shift);
+    x_move_l = wsin(m_Time, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_L, m_X_Move_Amplitude, m_X_Move_Amplitude_Shift);
+    y_move_l = wsin(m_Time, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_L, m_Y_Move_Amplitude, m_Y_Move_Amplitude_Shift);
+    z_move_l = wsin(m_Time, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_L, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_l = wsin(m_Time, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_L, m_A_Move_Amplitude, m_A_Move_Amplitude_Shift);
+    x_move_r = wsin(m_Time, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_L, -m_X_Move_Amplitude, -m_X_Move_Amplitude_Shift);
+    y_move_r = wsin(m_Time, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_L, -m_Y_Move_Amplitude, -m_Y_Move_Amplitude_Shift);
+    z_move_r = wsin(m_SSP_Time_Start_R, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_R, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_r = wsin(m_Time, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_L, -m_A_Move_Amplitude, -m_A_Move_Amplitude_Shift);
   }
   else if (m_Time <= m_SSP_Time_Start_R)
   {
-    x_move_l = wsin(
-        m_SSP_Time_End_L, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_X_Move_Amplitude,
-        m_X_Move_Amplitude_Shift);
-    y_move_l = wsin(
-        m_SSP_Time_End_L, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Y_Move_Amplitude,
-        m_Y_Move_Amplitude_Shift);
-    z_move_l = wsin(
-        m_SSP_Time_End_L, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_l = wsin(
-        m_SSP_Time_End_L, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_A_Move_Amplitude,
-        m_A_Move_Amplitude_Shift);
-    x_move_r = wsin(
-        m_SSP_Time_End_L, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_X_Move_Amplitude,
-        -m_X_Move_Amplitude_Shift);
-    y_move_r = wsin(
-        m_SSP_Time_End_L, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_Y_Move_Amplitude,
-        -m_Y_Move_Amplitude_Shift);
-    z_move_r = wsin(
-        m_SSP_Time_Start_R, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_R,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_r = wsin(
-        m_SSP_Time_End_L, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        -m_A_Move_Amplitude,
-        -m_A_Move_Amplitude_Shift);
+    x_move_l = wsin(m_SSP_Time_End_L, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_L, m_X_Move_Amplitude, m_X_Move_Amplitude_Shift);
+    y_move_l = wsin(m_SSP_Time_End_L, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_L, m_Y_Move_Amplitude, m_Y_Move_Amplitude_Shift);
+    z_move_l = wsin(m_SSP_Time_End_L, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_L, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_l = wsin(m_SSP_Time_End_L, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_L, m_A_Move_Amplitude, m_A_Move_Amplitude_Shift);
+    x_move_r = wsin(m_SSP_Time_End_L, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_L, -m_X_Move_Amplitude, -m_X_Move_Amplitude_Shift);
+    y_move_r = wsin(m_SSP_Time_End_L, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_L, -m_Y_Move_Amplitude, -m_Y_Move_Amplitude_Shift);
+    z_move_r = wsin(m_SSP_Time_Start_R, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_R, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_r = wsin(m_SSP_Time_End_L, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_L, -m_A_Move_Amplitude, -m_A_Move_Amplitude_Shift);
   }
   else if (m_Time <= m_SSP_Time_End_R)
   {
-    x_move_l = wsin(
-        m_Time, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_X_Move_Amplitude,
-        m_X_Move_Amplitude_Shift);
-    y_move_l = wsin(
-        m_Time, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_Y_Move_Amplitude,
-        m_Y_Move_Amplitude_Shift);
-    z_move_l = wsin(
-        m_SSP_Time_End_L, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_l = wsin(
-        m_Time, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_A_Move_Amplitude,
-        m_A_Move_Amplitude_Shift);
-    x_move_r = wsin(
-        m_Time, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_X_Move_Amplitude,
-        -m_X_Move_Amplitude_Shift);
-    y_move_r = wsin(
-        m_Time, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_Y_Move_Amplitude,
-        -m_Y_Move_Amplitude_Shift);
-    z_move_r = wsin(
-        m_Time, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_R,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_r = wsin(
-        m_Time, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_A_Move_Amplitude,
-        -m_A_Move_Amplitude_Shift);
+    x_move_l = wsin(m_Time, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_X_Move_Amplitude, m_X_Move_Amplitude_Shift);
+    y_move_l = wsin(m_Time, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_Y_Move_Amplitude, m_Y_Move_Amplitude_Shift);
+    z_move_l = wsin(m_SSP_Time_End_L, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_L, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_l = wsin(m_Time, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_A_Move_Amplitude, m_A_Move_Amplitude_Shift);
+    x_move_r = wsin(m_Time, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_X_Move_Amplitude, -m_X_Move_Amplitude_Shift);
+    y_move_r = wsin(m_Time, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_Y_Move_Amplitude, -m_Y_Move_Amplitude_Shift);
+    z_move_r = wsin(m_Time, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_R, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_r = wsin(m_Time, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_A_Move_Amplitude, -m_A_Move_Amplitude_Shift);
   }
   else
   {
-    x_move_l = wsin(
-        m_SSP_Time_End_R, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_X_Move_Amplitude,
-        m_X_Move_Amplitude_Shift);
-    y_move_l = wsin(
-        m_SSP_Time_End_R, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_Y_Move_Amplitude,
-        m_Y_Move_Amplitude_Shift);
-    z_move_l = wsin(
-        m_SSP_Time_End_L, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_L,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_l = wsin(
-        m_SSP_Time_End_R, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_A_Move_Amplitude,
-        m_A_Move_Amplitude_Shift);
-    x_move_r = wsin(
-        m_SSP_Time_End_R, m_X_Move_PeriodTime,
-        m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_X_Move_Amplitude,
-        -m_X_Move_Amplitude_Shift);
-    y_move_r = wsin(
-        m_SSP_Time_End_R, m_Y_Move_PeriodTime,
-        m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_Y_Move_Amplitude,
-        -m_Y_Move_Amplitude_Shift);
-    z_move_r = wsin(
-        m_SSP_Time_End_R, m_Z_Move_PeriodTime,
-        m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime *
-                                    m_SSP_Time_Start_R,
-        m_Z_Move_Amplitude,
-        m_Z_Move_Amplitude_Shift);
-    c_move_r = wsin(
-        m_SSP_Time_End_R, m_A_Move_PeriodTime,
-        m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_A_Move_Amplitude,
-        -m_A_Move_Amplitude_Shift);
+    x_move_l = wsin(m_SSP_Time_End_R, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_X_Move_Amplitude, m_X_Move_Amplitude_Shift);
+    y_move_l = wsin(m_SSP_Time_End_R, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_Y_Move_Amplitude, m_Y_Move_Amplitude_Shift);
+    z_move_l = wsin(m_SSP_Time_End_L, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_L, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_l = wsin(m_SSP_Time_End_R, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), m_A_Move_Amplitude, m_A_Move_Amplitude_Shift);
+    x_move_r = wsin(m_SSP_Time_End_R, m_X_Move_PeriodTime, m_X_Move_Phase_Shift + 2 * keisan::piValue() / m_X_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_X_Move_Amplitude, -m_X_Move_Amplitude_Shift);
+    y_move_r = wsin(m_SSP_Time_End_R, m_Y_Move_PeriodTime, m_Y_Move_Phase_Shift + 2 * keisan::piValue() / m_Y_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_Y_Move_Amplitude, -m_Y_Move_Amplitude_Shift);
+    z_move_r = wsin(m_SSP_Time_End_R, m_Z_Move_PeriodTime, m_Z_Move_Phase_Shift + 2 * keisan::piValue() / m_Z_Move_PeriodTime * m_SSP_Time_Start_R, m_Z_Move_Amplitude, m_Z_Move_Amplitude_Shift);
+    c_move_r = wsin(m_SSP_Time_End_R, m_A_Move_PeriodTime, m_A_Move_Phase_Shift + 2 * keisan::piValue() / m_A_Move_PeriodTime * m_SSP_Time_Start_R + keisan::piValue(), -m_A_Move_Amplitude, -m_A_Move_Amplitude_Shift);
   }
 
   double r_x = x_swap + x_move_r + m_X_Offset;
@@ -1023,7 +847,7 @@ void Walking::process()
 
   int dir[22];
   dir[0] = 1;
-  dir[1] = -1;
+  dir[1] = 1;
   dir[2] = 1;
   dir[3] = -1;
   dir[4] = 1;
@@ -1033,7 +857,7 @@ void Walking::process()
   dir[8] = 1;
   dir[9] = -1;
   dir[10] = 1;
-  dir[11] = 1;
+  dir[11] = -1;
   dir[12] = -1;
   dir[13] = 1;
   dir[14] = 1;
@@ -1045,6 +869,7 @@ void Walking::process()
   dir[20] = 1;
   dir[21] = 1;
 
+  std::cout << "build outValue" << std::endl;
   int outValue[22];
   for (int i = 0; i < 22; i++)
   {
@@ -1059,6 +884,7 @@ void Walking::process()
     }
 
     outValue[i] = mx.angle_to_value(initAngle[i]) + static_cast<int>(offset);
+    std::cout << i << ": d " << dir[i] << ", a " << angle[i] << ", o " << offset << std::endl;
   }
 
   // adjust balance offset
