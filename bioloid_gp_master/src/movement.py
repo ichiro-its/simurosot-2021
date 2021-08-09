@@ -46,19 +46,35 @@ class movement:
                 self.joint_position_state=[
                     -45*dtr, 45*dtr, #1 2 shoulder pitch
                     0*dtr, 0*dtr, #3 4 shoulder roll
-                    -75*dtr, -75*dtr, #5 6 below
+                    -84*dtr, -78*dtr, #5 6 below
                     0*dtr, 0*dtr, #7 8 not yet
                     0*dtr, 0*dtr, #9 10 hip roll (in positive)
-                    -140*dtr, -140*dtr, #11 12 hip pitch
-                    -12*dtr, -12*dtr, #13 14 knee
+                    -155*dtr, -155*dtr, #11 12 hip pitch
+                    -10*dtr, -10*dtr, #13 14 knee
                     15*dtr, 15*dtr, #15 16 ankle pitch (front negative)
                     0*dtr, 0*dtr, #17 18  ankle roll (out negative)
                     0*dtr, 0*dtr, 0*dtr] #19 20 21 
                 self.joints_states.position = self.joint_position_state
                 self.pub.publish(self.joints_states)
-                rospy.sleep(time * 3)
+                rospy.sleep(time * 2.8)
                 print("READY")
-            if (number == 12): #JUMP V1
+            # if (number == 12): #JUMP V1
+                self.joint_position_state=[
+                    0*dtr, 0*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    0*dtr, 0*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -90*dtr, -90*dtr, #11 12 hip pitch
+                    -132*dtr, -132*dtr, #13 14 knee
+                    -40*dtr, -40*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time * 5)
+                print("GO")
+            # if (number == 13): #JUMP V3
                 self.joint_position_state=[
                     0*dtr, 0*dtr, #1 2 shoulder pitch
                     0*dtr, 0*dtr, #3 4 shoulder roll
@@ -67,12 +83,12 @@ class movement:
                     0*dtr, 0*dtr, #9 10 hip roll (in positive)
                     -120*dtr, -120*dtr, #11 12 hip pitch
                     -120*dtr, -120*dtr, #13 14 knee
-                    -30*dtr, -30*dtr, #15 16 ankle pitch (front negative)
+                    -35*dtr, -35*dtr, #15 16 ankle pitch (front negative)
                     0*dtr, 0*dtr, #17 18  ankle roll (out negative)
                     0*dtr, 0*dtr, 0*dtr] #19 20 21
                 self.joints_states.position = self.joint_position_state
                 self.pub.publish(self.joints_states)
-                rospy.sleep(time)
+                rospy.sleep(time * 3.5)
                 print("GO")
 
             if (number == 2): #JUMP V2
@@ -166,6 +182,39 @@ class movement:
                     -40*dtr, -40*dtr, #13 14
                     0*dtr, 0*dtr, #15 16 pitch (front negative)
                     0*dtr, 0*dtr, #17 18 yaw (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time)
+                print("GO")
+                
+            if (number == 5): #JUMP V3
+                self.joint_position_state=[
+                    -45*dtr, 45*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    -90*dtr, -90*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -155*dtr, -155*dtr, #11 12 hip pitch
+                    -10*dtr, -10*dtr, #13 14 knee
+                    15*dtr, 15*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
+                    0*dtr, 0*dtr, 0*dtr] #19 20 21  
+                self.joints_states.position = self.joint_position_state
+                self.pub.publish(self.joints_states)
+                rospy.sleep(time * 3)
+                print("READY")
+            if (number == 52): #JUMP V3
+                self.joint_position_state=[
+                    0*dtr, 0*dtr, #1 2 shoulder pitch
+                    0*dtr, 0*dtr, #3 4 shoulder roll
+                    0*dtr, 0*dtr, #5 6 below
+                    0*dtr, 0*dtr, #7 8 not yet
+                    0*dtr, 0*dtr, #9 10 hip roll (in positive)
+                    -120*dtr, -120*dtr, #11 12 hip pitch
+                    -120*dtr, -120*dtr, #13 14 knee
+                    -38*dtr, -38*dtr, #15 16 ankle pitch (front negative)
+                    0*dtr, 0*dtr, #17 18  ankle roll (out negative)
                     0*dtr, 0*dtr, 0*dtr] #19 20 21
                 self.joints_states.position = self.joint_position_state
                 self.pub.publish(self.joints_states)
