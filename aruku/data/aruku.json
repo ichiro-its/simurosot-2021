@@ -2,7 +2,7 @@
   "Ratio": {
     "forward_hip_comp_ratio": 0.0,
     "dsp_comp_ratio": 0.0,
-    "period_time": 480.0,
+    "period_time": 500.0,
     "swing_right_left": 0.0,
     "dsp_ratio": -0.22,
     "period_comp_ratio": 0.0,
@@ -11,7 +11,7 @@
     "backward_hip_comp_ratio": 0.0,
     "foot_comp_ratio": 0.10,
     "foot_height": 105.0,
-    "move_accel_ratio": 0.4,
+    "move_accel_ratio": 0.2,
     "foot_accel_ratio": 0.2 
   },
   "Offset": {
@@ -56,13 +56,13 @@
     "left_hip_roll": -3.0,
     "left_hip_pitch": 0.0,
     "left_knee": 0,
-    "left_ankle_roll": -1,
+    "left_ankle_roll": 1,
     "left_ankle_pitch": 1,
     "right_hip_yaw": 0,
     "right_hip_roll": -3.0,
     "right_hip_pitch": 0.0,
-    "right_knee": 1,
-    "right_ankle_roll": -1,
+    "right_knee": 0,
+    "right_ankle_roll": 1,
     "right_ankle_pitch": 1.5
   }
 }
