@@ -39,14 +39,18 @@ class movement:
         self.joints_states.name = ["joint_0_1","joint_0_2","joint_0_3","joint_0_4","joint_0_5","joint_0_6","joint_0_7","joint_0_8","joint_0_9","joint_0_10","joint_0_11","joint_0_12","joint_0_13","joint_0_14","joint_0_15","joint_0_16","joint_0_17","joint_0_18","joint_0_19","joint_0_20","joint_0_21"]
 
         number = 1
-        while not rospy.is_shutdown():
+        count = 0
+        while not rospy.is_shutdown() and count < 3:
             
-            number = input ("Enter number: ")
+            count += 1
+            
+            # number = input ("Enter number: ")
             if (number == 1): #JUMP V1
+                rospy.sleep(time * 2)
                 self.joint_position_state=[
                     -45*dtr, 45*dtr, #1 2 shoulder pitch
                     0*dtr, 0*dtr, #3 4 shoulder roll
-                    -84*dtr, -78*dtr, #5 6 below
+                    -85*dtr, -77*dtr, #5 6 below
                     0*dtr, 0*dtr, #7 8 not yet
                     0*dtr, 0*dtr, #9 10 hip roll (in positive)
                     -155*dtr, -155*dtr, #11 12 hip pitch
@@ -89,7 +93,7 @@ class movement:
                 self.joints_states.position = self.joint_position_state
                 self.pub.publish(self.joints_states)
                 rospy.sleep(time * 3.5)
-                print("GO")
+                print("RELEASE")
 
             if (number == 2): #JUMP V2
                 self.joint_position_state=[
@@ -223,5 +227,5 @@ class movement:
                                
 if __name__ == '__main__':
     movement= movement()
-    while not rospy.is_shutdown():
-        movement.main()
+    # while not rospy.is_shutdown():
+    movement.main()
